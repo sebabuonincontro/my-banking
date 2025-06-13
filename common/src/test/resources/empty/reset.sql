@@ -1,0 +1,3 @@
+TRUNCATE TABLE home_banking.users RESTART IDENTITY;
+TRUNCATE TABLE home_banking.accounts RESTART IDENTITY;
+TRUNCATE TABLE home_banking.transactions RESTART IDENTITY;

@@ -1,0 +1,21 @@
+server:
+  port: ${server.port}
+
+spring:
+  application:
+    name: account
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://${postgres.postgresql.service.host}:${postgres.postgresql.service.port}/${postgresql.database}
+    username: ${postgresql.user}
+    password: ${postgresql.password}
+  database:
+    driverClassName: org.postgresql.Driver
+
+  security:
+    basic:
+      enabled: false
