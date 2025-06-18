@@ -1,12 +1,12 @@
 package com.home.users.services;
 
-import com.google.common.collect.Lists;
 import com.home.common.entities.dtos.UserDTO;
 import com.home.users.exceptions.UserException;
 import com.home.users.exceptions.UserNotFoundException;
 import com.home.users.mappers.UsersMapper;
 import com.home.users.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.compress.utils.Lists;
 import org.hibernate.HibernateException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,8 +48,8 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public List<UserDTO> getAllUsers() {
-        return Lists.newArrayList(userRepository.findAll())
-            .parallelStream()
+        return userRepository.getAll()
+            .parallel()
             .map(UsersMapper.INSTANCE::mapToDto)
             .sorted(Comparator.comparing(UserDTO::getId))
             .collect(Collectors.toList());

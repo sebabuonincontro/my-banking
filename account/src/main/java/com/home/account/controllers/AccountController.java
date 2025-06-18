@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController("/account")
@@ -28,7 +29,7 @@ public class AccountController {
 
 
     @GetMapping("/user/{userId}")
-    public Stream<AccountDTO> getAccountsByUser(@PathVariable("userId") String userId) {
+    public List<AccountDTO> getAccountsByUser(@PathVariable("userId") String userId) {
         return accountService.retrieveByUserId(userId);
     }
 

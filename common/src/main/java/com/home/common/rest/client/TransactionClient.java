@@ -3,8 +3,6 @@ package com.home.common.rest.client;
 import com.home.common.entities.dtos.TransactionDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import reactor.core.publisher.Mono;
 
 @Component

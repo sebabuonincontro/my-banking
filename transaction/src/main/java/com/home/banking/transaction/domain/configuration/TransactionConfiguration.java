@@ -1,6 +1,5 @@
-package com.home.banking.transaction.configuration;
+package com.home.banking.transaction.domain.configuration;
 
-import com.home.common.configuration.CommonConfiguration;
 import com.home.common.configuration.RestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +9,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 
 @Configuration
-@Import({CommonConfiguration.class, RestConfiguration.class})
+@Import({RestConfiguration.class})
 public class TransactionConfiguration {
 
     @Bean(name = "transactionTaskExecutor")

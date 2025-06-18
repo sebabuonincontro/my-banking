@@ -1,15 +1,14 @@
 package com.home.account.services;
 
-import com.google.common.collect.Lists;
-import com.home.account.exceptions.AccountException;
 import com.home.account.mappers.AccountMapper;
 import com.home.account.repositories.AccountRepository;
 import com.home.common.entities.Account;
 import com.home.common.entities.dtos.AccountDTO;
-import lombok.val;
+import org.apache.commons.compress.utils.Lists;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -33,12 +32,11 @@ public class AccountService {
                 .map(accountMapper::toDto).orElseThrow();
     }
 
-    public Stream<AccountDTO> retrieveByUserId(String userId) {
-        return Stream.of(accountRepository.findAll())
-                .map(Lists::newArrayList)
-                .flatMap(Collection::parallelStream)
+    public List<AccountDTO> retrieveByUserId(String userId) {
+        return accountRepository.getAll()
                 .filter(account -> account.getUserId().equalsIgnoreCase(userId))
-                .map(accountMapper::toDto);
+                .map(accountMapper::toDto)
+                .toList();
     }
 
     public Optional<AccountDTO> retrieveById(String accountId) {

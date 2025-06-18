@@ -13,7 +13,7 @@ public class AccountClient {
 
     private final CommonClient commonClient;
 
-    public List<AccountDTO> getAccountsBy(String userId) {
+    public List<AccountDTO> getAccountsByUser(String userId) {
         return commonClient.getWebClient("http://localhost:8082/account")
                 .get()
                 .uri("/user/{userId}", userId)
@@ -22,4 +22,12 @@ public class AccountClient {
                 .block();
     }
 
+    public List<AccountDTO> getAccountsByNumber(String accountNumber) {
+        return commonClient.getWebClient("http://localhost:8082/account")
+                .get()
+                .uri("/{number}", accountNumber)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<AccountDTO>>() {})
+                .block();
+    }
 }

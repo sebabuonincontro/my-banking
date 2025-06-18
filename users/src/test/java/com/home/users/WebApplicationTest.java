@@ -2,7 +2,7 @@ package com.home.users;
 
 import com.home.users.controllers.UserController;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,7 +13,7 @@ public class WebApplicationTest {
     private UserController userController;
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
         Assertions.assertThat(userController).isNotNull();
     }
 }

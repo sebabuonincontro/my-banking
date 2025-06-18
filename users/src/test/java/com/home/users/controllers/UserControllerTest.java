@@ -3,9 +3,10 @@ package com.home.users.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.home.common.entities.dtos.UserDTO;
 import lombok.val;
+
+import org.junit.Test;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,12 +39,11 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     @Sql(value = "classpath:init/user-data.sql", executionPhase = BEFORE_TEST_METHOD)
-    void whenGetUsers_ThenReturn200() throws Exception {
+    public void whenGetUsers_ThenReturn200() throws Exception {
         mockMvc.perform(get("/users")
                 .contentType(APPLICATION_JSON))
                 .andDo(print())
@@ -54,7 +54,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void whenPostUsers_ThenReturns201AndTheUserWasCreated() throws Exception {
+    public void whenPostUsers_ThenReturns201AndTheUserWasCreated() throws Exception {
         val jsonFile = new ClassPathResource("init/user.json").getFile();
         val toCreate = Files.readString(jsonFile.toPath());
         val dto = objectMapper.readValue(toCreate, UserDTO.class);

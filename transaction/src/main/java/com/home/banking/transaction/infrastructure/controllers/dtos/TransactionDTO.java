@@ -1,4 +1,4 @@
-package com.home.common.entities.dtos;
+package com.home.banking.transaction.infrastructure.controllers.dtos;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

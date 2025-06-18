@@ -5,11 +5,13 @@ import io.vavr.control.Option;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.stream.Stream;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
     Option<User> findByUsername(String username);
+
+    Stream<User> getAll();
 
 }
