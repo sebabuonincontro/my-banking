@@ -18,4 +18,6 @@ public interface TransactionMapper {
     TransactionDTO toDto(Transaction transaction);
 
     TransactionEntity toEntity(Transaction transaction);
+
+    Transaction fromEntity(TransactionEntity transactionEntity);
 }

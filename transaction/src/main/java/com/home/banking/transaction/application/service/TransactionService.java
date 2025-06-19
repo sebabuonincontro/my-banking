@@ -16,6 +16,8 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
+import com.home.banking.transaction.application.service.exceptions.TransactionNotFoundException;
+
 @Service
 public class TransactionService implements TransactionUseCase {
 
@@ -65,12 +67,8 @@ public class TransactionService implements TransactionUseCase {
     }
 
     @Override
-    public Optional<Transaction> getById(String id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public void remove(Long id) {
-
+    public Transaction getById(String id) {
+        return transactionRepository.getById(id)
+                .orElseThrow(TransactionNotFoundException::new);
     }
 }

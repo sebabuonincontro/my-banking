@@ -11,7 +11,5 @@ public interface TransactionUseCase {
 
     List<Transaction> getAll();
 
-    Optional<Transaction> getById(String id);
-
-    void remove(Long id);
+    Transaction getById(String id);
 }

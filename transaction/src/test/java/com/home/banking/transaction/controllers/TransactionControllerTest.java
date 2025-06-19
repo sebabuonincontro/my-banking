@@ -7,14 +7,14 @@ import com.home.banking.transaction.domain.ports.in.UserUseCase;
 import com.home.banking.transaction.infrastructure.controllers.TransactionController;
 import com.home.banking.transaction.infrastructure.controllers.dtos.TransactionDTO;
 import lombok.val;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class TransactionControllerTest {
+public class TransactionControllerTest {
 
     @MockBean
     private UserUseCase userUseCase;
@@ -74,10 +74,9 @@ class TransactionControllerTest {
         verify(accountUseCase, times(1)).getAccountsBy(accountDestination);
         verify(userUseCase, times(1)).retrieveUserBy(userId);
 
-//        var provided = transactionController.getById(newTrx.getId());
-//
-//        assertEquals(provided.getAccountSource(), trx.getAccountSource());
-//        assertEquals(provided.getAccountDestination(), trx.getAccountDestination());
+        var provided = transactionController.getById(newTrx.getId());
+        assertEquals(provided.getAccountSource(), trx.getAccountSource());
+        assertEquals(provided.getAccountDestination(), trx.getAccountDestination());
     }
 
 }
